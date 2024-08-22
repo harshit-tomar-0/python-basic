@@ -2,7 +2,10 @@ import subprocess,sys,threading,time,argparse
 #tools used
 #Dmitry
 #nmap
-#dnsenum
+#dnsenum            by: @harshit-tomar-0
+#lbd
+#amass
+#dig
 tool = ['dmitry -w -n -s -e {}','nmap -A {}','lbd {}','dnsrecon --tcp -d {}','enum4linux -U -M -S -P -G -D -o -i -n -r -a {}','dig -x {}','amass enum -src -brute -min-for-recursive 2 -d {}']
 class tools():
     def __init__(self,ip=None,port=None,dns=None):
@@ -16,7 +19,7 @@ class tools():
         if self.ip == None or self.dns != None:
             for i in str(subprocess.getoutput(tool[0].format(self.dns))).split('\n'):
                 print(i)
-    def nmap(self): #dmitry --> both ip/dns --> find useful info
+    def nmap(self): #nmap --> both ip/dns --> find useful info
         if self.ip != None or self.dns == None: 
             for i in str(subprocess.getoutput(tool[1].format(self.ip))).split('\n'):
                 print(i)
